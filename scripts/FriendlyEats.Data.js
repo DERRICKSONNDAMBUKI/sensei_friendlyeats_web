@@ -44,9 +44,10 @@ FriendlyEats.prototype.getRestaurant = function(id) {
 };
 
 FriendlyEats.prototype.getFilteredRestaurants = function(filters, renderer) {
-  /*
-    TODO: Retrieve filtered list of restaurants
-  */
+  var query = firebase.firestore().collection('restaurants')
+  if (filters.category!== 'Any') {
+    query=query.where('city','==',filters.category)
+  }
 };
 
 FriendlyEats.prototype.addRating = function(restaurantID, rating) {
